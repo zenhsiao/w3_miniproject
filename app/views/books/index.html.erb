@@ -1,1 +1,15 @@
 <h1>Book List</h1>
+
+
+<ul>
+   <% @book.each do |book| %>
+	<li>
+	<%=	book.name        %>
+	<%=	book.description %>
+	<%=	book.isbn       %>
+
+	</li>
+<%	end  %>
+</ul>
+
+<%=	link_to "New Book", new_book_path    %>
