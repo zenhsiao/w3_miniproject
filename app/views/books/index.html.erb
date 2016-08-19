@@ -2,11 +2,12 @@
 
 
 <ul>
-   <% @book.each do |book| %>
+   <% @books.each do |book| %>
 	<li>
 	<%=	book.name        %>
 	<%=	book.description %>
 	<%=	book.isbn       %>
+	<%=	link_to "show", book_path(book)      %>
 
 	</li>
 <%	end  %>
