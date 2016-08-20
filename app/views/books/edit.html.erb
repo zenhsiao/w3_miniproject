@@ -1,9 +1,4 @@
 <%= form_for @book,:url=> book_path(@book),:method => :patch do |f| %>
-<%=	f.label :name %>
-<%=	f.text_field :name %>
-<%=	f.label :description %>
-<%=	f.text_area :description %>
-<%=	f.label :isbn %>
-<%=	f.text_field :isbn %>
-<%=	f.submit %>
+<%=	render :partial=>"form", :locals=>{:f=>f} %>
+
 <% end %>
