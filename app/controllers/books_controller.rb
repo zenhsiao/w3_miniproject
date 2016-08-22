@@ -50,7 +50,7 @@ class BooksController < ApplicationController
 	    
 
 		@book.delete
-		redirect_to books_path
+		redirect_to books_path :page=>params[:page]
 		flash[:notice] = "刪除成功"
 
 		
