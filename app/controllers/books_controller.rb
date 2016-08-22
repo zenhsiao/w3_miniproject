@@ -7,11 +7,11 @@ class BooksController < ApplicationController
 
 	def new
 		@book=Book.new
+
 		
 	end
 
 	def create
-        
 		@book = Book.new(params_permit)
 		
 		if @book.save
@@ -47,7 +47,8 @@ class BooksController < ApplicationController
 		
 	end
 	def destroy
-	
+	    
+
 		@book.delete
 		redirect_to books_path
 		flash[:notice] = "刪除成功"
@@ -63,6 +64,6 @@ class BooksController < ApplicationController
 
 	def params_permit
 
-		params.require(:book).permit(:name,:description,:isbn)
+		params.require(:book).permit(:name,:description,:上架日期,:isbn,:出版日期)
 	end
 end

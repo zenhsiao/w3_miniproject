@@ -6,6 +6,8 @@
     <th>Name</th>
     <th>Description</th>
     <th>ISBN</th>
+    <th>出版日期</th>
+    <th>上架日期</th>
     <th>Show</th>
     <th>Edit</th>
     <th>Delete</th>
@@ -16,9 +18,11 @@
 	<td><%=	book.name        %></td>
 	<td><%=	book.description %></td>
 	<td><%=	book.isbn       %></td>
+	<td><%=	book.出版日期       %></td>
+	<td><%=	book.上架日期       %></td>
 	<td><%=	link_to "show", book_path(book)      %></td>
     <td><%=	link_to "edit", edit_book_path(book)      %></td>
-	<td><%=	link_to "delete", book_path(book), :method => 'delete'     %></td>
+	<td><%=	link_to "delete", book_path(book), :method => 'delete',:page=>@books.page   %></td>
 
 	</tr>
 <%	end  %>
