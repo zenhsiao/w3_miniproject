@@ -1,15 +1,23 @@
 class BooksController < ApplicationController
-  before_action :find_book_id, :only => [:show,:edit,:update,:destroy]
+  before_action :find_book_id, :only => [:show,:update,:destroy]
 
 	def index
-		@books = Book.page(params[:page]).per(5)
-	end
-
-	def new
-		@book=Book.new
-
 		
+		 @books = Book.page(params[:page]).per(5)
+        
+         if params[:id]
+           
+           @book = Book.find(params[:id])
+
+         else   
+
+		   @book=Book.new
+        
+         end
+
 	end
+
+
 
 	def create
 		@book = Book.new(params_permit)
@@ -19,7 +27,8 @@ class BooksController < ApplicationController
 			redirect_to book_path(@book)
 			flash[:notice] = "新增成功"
 		else
-		   render :action => :new
+		   @books = Book.page(params[:page]).per(5)
+		   render :action => :index
 		end
 	end
 
@@ -28,20 +37,18 @@ class BooksController < ApplicationController
 		
 	end
 
-	def edit
-		
-		
-	end
+
 
 	def update
 	
 		
 	  if @book.update(params_permit)
 		@book.update(params_permit)
-		redirect_to book_path(@book)
+		redirect_to book_path(@book) 
 		flash[:notice] = "更新成功"
 	  else
-	  	render :action => :edit
+	  	@books = Book.page(params[:page]).per(5)
+	  	render :action => :index
 	  end
 
 		

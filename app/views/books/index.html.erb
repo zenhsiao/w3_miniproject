@@ -1,5 +1,24 @@
 <h1>Book List</h1>
 
+<% if @book.id %>
+
+	<%= form_for @book,:url=> book_path(@book),:method => :patch do |f| %>
+	<%=	render :partial=>"form", :locals=>{:f=>f} %>
+
+	<% end %>
+	
+
+<% else %>
+
+	<%= form_for @book, :url => books_path do |f| %>
+		
+	<%=	render :partial=>"form",:locals=>{:f=>f}%>
+
+	<% end %>
+
+
+<% end %>
+
 
 <table class="table table-striped">
    <tr>
@@ -21,16 +40,27 @@
 	<td><%=	book.出版日期       %></td>
 	<td><%=	book.上架日期       %></td>
 	<td><%=	link_to "show", book_path(book)      %></td>
-    <td><%=	link_to "edit", edit_book_path(book)      %></td>
-	<td><%=	link_to "delete", book_path(book,:page=>params[:page]), :method => 'delete',:page=>@books.page   %></td>
+    <td><%=	link_to "edit", books_path(:id=>book,:page=>params[:page])%></td>
+
+	<td><%=	button_to "delete", book_path(book,:page=>params[:page]), :method => 'delete',:page=>@books.page   %></td>
 
 	</tr>
+
+
+
 <%	end  %>
+
 </table>
 
 
-<button type="button">
-<%=	link_to "New Book", new_book_path    %>
+
+
+
+
+
+
+
+
 	
-</button>
+
 <div><%=	paginate @books    %></div>
